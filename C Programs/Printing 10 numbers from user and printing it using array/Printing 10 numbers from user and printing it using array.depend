@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1595869307 source:c:\users\abhin\abhinav's programs in c\printing 10 numbers from user and printing it using array\main.c
+	<stdio.h>
+	<stdlib.h>
+

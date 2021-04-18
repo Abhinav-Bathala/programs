@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1586020059 source:c:\users\abhin\advanced multiplication\abhinav's programs in c\testproject\main.c
+	<stdio.h>
+	<stdlib.h>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1596910405 source:c:\users\abhin\abhinav's programs in c\printing number of chars in a string\main.c
+	<stdio.h>
+	<stdlib.h>
+
