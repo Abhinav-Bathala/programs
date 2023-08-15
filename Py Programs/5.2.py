@@ -12,21 +12,18 @@ attribute = {"health" : 0,
              "strength" : 0,
              "wisdom" : 0,
              "dexterity" : 0}
+pool = 30
 
 print("You have 30 points to spend on your attributes. Choose wisely")
 print("Your 4 options are: Health, Strength, Wisdom, and Dexterity")
 
-pool = 30
-count = 0
 
-while True:
-
-    action = input("Would you like to spend your points or retrieve your points? Please enter either 'spend' or 'retrieve': ")
+def spend(pool):
     
-    if action.lower() == 'spend':
-
+    if pool == 0:
+        print("You have no points to spend")
+    else:
         selection = input("Choose an attribute to spend points on: ")
-        
         if selection.lower() == 'health':
             num_spend = int(input("How many points would you like to spend? Please enter here: "))
             if pool >= num_spend:
@@ -34,7 +31,6 @@ while True:
                 pool -= num_spend
             else:
                 print("You don't have enough points to spend on your chosen attribute")
-
         elif selection.lower() == 'strength':
             num_spend = int(input("How many points would you like to spend? Please enter here: "))
             if pool >= num_spend:
@@ -42,7 +38,6 @@ while True:
                 pool -= num_spend
             else:
                 print("You don't have enough points to spend on your chosen attribute")
-
         elif selection.lower() == 'wisdom':
             num_spend = int(input("How many points would you like to spend? Please enter here: "))
             if pool >= num_spend:
@@ -50,7 +45,6 @@ while True:
                 pool -= num_spend
             else:
                 print("You don't have enough points to spend on your chosen attribute")
-
         elif selection.lower() == 'dexterity':
             num_spend = int(input("How many points would you like to spend? Please enter here: "))
             if pool >= num_spend:
@@ -58,78 +52,73 @@ while True:
                 pool -= num_spend
             else:
                 print("You don't have enough points to spend on your chosen attribute")
-
         else:
             print("The option you have selected does not match the given list of attributes. Please select one from the provided list")
-        
-        count = count + 1
-        print("You now have: ")
-        print("Pool: ", pool)
-        print("Health: ", attribute["health"])
-        print("Strength: ", attribute["strength"])
-        print("Wisdom: ", attribute["wisdom"])
-        print("Dexterity: ", attribute["dexterity"])
+            
+    return pool
 
+    
+def retrieve(pool):
+    if pool != 30:
+        selection = input("Choose an attribute to retrieve points on: ")      
+        if selection.lower() == 'health':
+            num_retrieve = int(input("How many points would you like to retrieve? Please enter here: "))
+            if num_retrieve <= attribute["health"]:
+                attribute["health"] -= num_retrieve
+                pool += num_retrieve
+            else:
+                print("The amount of points you chose to retrieve is larger than the amount of points present in your characters health attribute")
+        elif selection.lower() == 'strength':
+            num_retrieve = int(input("How many points would you like to retrieve? Please enter here: "))
+            if num_retrieve <= attribute["strength"]:
+                attribute["strength"] -= num_retrieve
+                pool += num_retrieve
+            else:
+                print("The amount of points you chose to retrieve is larger than the amount of points present in your characters health attribute")
+        elif selection.lower() == 'wisdom':
+            num_retrieve = int(input("How many points would you like to retrieve? Please enter here: "))
+            if num_retrieve <= attribute["wisdom"]:
+                attribute["wisdom"] -= num_retrieve
+                pool += num_retrieve
+            else:
+                print("The amount of points you chose to retrieve is larger than the amount of points present in your characters health attribute")     
+        elif selection.lower() == 'dexterity':
+            num_retrieve = int(input("How many points would you like to retrieve? Please enter here: "))
+            if num_retrieve <= attribute["dexterity"]:
+                attribute["dexterity"] -= num_retrieve
+                pool += num_retrieve   
+            else:
+                print("The amount of points you chose to retrieve is larger than the amount of points present in your characters health attribute")   
+        else:
+            print("The option you have selected does not match the given list of attributes. Please select one from the provided list")                      
+    else:
+        print("You have no points to retrieve")
+        
+    return pool
+
+    
+while True:
+
+    action = input("Would you like to spend your points or retrieve your points? Please enter either 'spend' or 'retrieve': ")
+    
+    if action.lower() == 'spend':
+        pool = spend(pool)
+        print("You now have: \n",
+          "Pool: ", pool, "\n",
+          "Health: ", attribute["health"],"\n",
+          "Strength: ", attribute["strength"],"\n",
+          "Wisdom: ", attribute["wisdom"], "\n",
+          "Dexterity: ", attribute["dexterity"])
         
     elif action.lower() == 'retrieve':
-
-        if count != 0 and pool != 30:
-
-            selection = input("Choose an attribute to retrieve points on: ")
-                
-            if selection.lower() == 'health':
-                num_retrieve = int(input("How many points would you like to retrieve? Please enter here: "))
-                if num_retrieve <= attribute["health"]:
-                    attribute["health"] -= num_retrieve
-                    pool += num_retrieve
-                else:
-                    print("The amount of points you chose to retrieve is larger than the amount of points present in your characters health attribute")
-
-            elif selection.lower() == 'strength':
-                num_retrieve = int(input("How many points would you like to retrieve? Please enter here: "))
-                if num_retrieve <= attribute["strength"]:
-                    attribute["strength"] -= num_retrieve
-                    pool += num_retrieve
-                else:
-                    print("The amount of points you chose to retrieve is larger than the amount of points present in your characters health attribute")
-                    
-
-            elif selection.lower() == 'wisdom':
-                num_retrieve = int(input("How many points would you like to retrieve? Please enter here: "))
-                if num_retrieve <= attribute["wisdom"]:
-                    attribute["wisdom"] -= num_retrieve
-                    pool += num_retrieve
-                else:
-                    print("The amount of points you chose to retrieve is larger than the amount of points present in your characters health attribute")
-                    
-
-            elif selection.lower() == 'dexterity':
-                num_retrieve = int(input("How many points would you like to retrieve? Please enter here: "))
-                if num_retrieve <= attribute["dexterity"]:
-                    attribute["dexterity"] -= num_retrieve
-                    pool += num_retrieve
-                    
-                else:
-                    print("The amount of points you chose to retrieve is larger than the amount of points present in your characters health attribute")
-                    
-
-            else:
-                print("The option you have selected does not match the given list of attributes. Please select one from the provided list")
-                
-            count = count + 1
-            print("You now have: ")
-            print("Pool: ", pool)
-            print("Health: ", attribute["health"])
-            print("Strength: ", attribute["strength"])
-            print("Wisdom: ", attribute["wisdom"])
-            print("Dexterity: ", attribute["dexterity"])
-                
-
-        else:
-            print("You have no points to retrieve")
-
-
-
+        pool = retrieve(pool)
+        print("You now have: \n",
+          "Pool: ", pool, "\n",
+          "Health: ", attribute["health"],"\n",
+          "Strength: ", attribute["strength"],"\n",
+          "Wisdom: ", attribute["wisdom"], "\n",
+          "Dexterity: ", attribute["dexterity"])
+        
     else:
         print("The action you have chosen does not exist. Please either choose 'spend' or 'retrieve'.")
         
